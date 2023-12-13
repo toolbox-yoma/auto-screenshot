@@ -86,7 +86,7 @@ def act():
         screenshot.save("{}/{}_{}.png".format(real_path, file, i))
         pyautogui.press('right')
         print("page: {}/{}".format(i, page))
-        time.sleep(2)
+        time.sleep(1)
 
     if is_pdf.get() == 1:
         # 마지막 페이지 팝업 닫기
