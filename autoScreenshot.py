@@ -51,8 +51,6 @@ def on_click(x, y, button, pressed):
 
 
 click_listener = mouse.Listener(on_click=on_click)
-click_listener.start()
-click_listener.join()
 
 def act():
     global coordinate
@@ -75,6 +73,10 @@ def act():
     print("파일 이름: {}".format(file))
     print("페이지 수: {}".format(page))
     print("경로: {}".format(real_path))
+    print("\n")
+
+    click_listener.start()
+    click_listener.join()
 
     # 화면 전환 대기 시간
     time.sleep(5)
@@ -141,6 +143,5 @@ tk.Button(root, text='confirm', command=act).grid(row=4, column=1, sticky=tk.W, 
 tk.mainloop()
 
 print("End")
-os.system("afplay /System/Library/Sounds/Blow.aiff")
 os.system("afplay /System/Library/Sounds/Blow.aiff")
 os.system("afplay /System/Library/Sounds/Blow.aiff")
