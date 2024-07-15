@@ -5,6 +5,7 @@ from pynput import mouse
 import math
 from enum import Enum
 import tkinter as tk
+from tkinter import ttk
 import tkinter.messagebox as mx
 import sys
 
