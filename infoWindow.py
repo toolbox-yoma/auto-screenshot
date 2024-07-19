@@ -24,6 +24,12 @@ class InfoWindow:
     _third_entry = tk.Entry(_user_info_frame)
     _third_entry.grid(row=3, column=1, padx=5, pady=5)
 
+    _is_testing = tk.BooleanVar()
+    _test_label = tk.Checkbutton(
+        _user_info_frame, text="Test", bg="lightgrey", variable=_is_testing
+    )
+    _test_label.grid(row=4, column=0, padx=5, pady=5)
+
     _name_list = []
 
     @classmethod
@@ -33,7 +39,7 @@ class InfoWindow:
         )
         cls.submit_button.grid(row=3, column=0, padx=20, pady=10)
         cls._root.mainloop()
-        return cls._name_list
+        return cls._name_list, cls._is_testing.get()
 
     @classmethod
     def submit_data(cls):

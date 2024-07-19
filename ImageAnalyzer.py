@@ -5,8 +5,8 @@ from Interact import Interact
 
 class ImageAnalyzer:
     _root = "./nidlde_images/"
-    # _niddle_img = cv2.imread('last_page_alert.png', cv2.IMREAD_UNCHANGED)
-    # _button_img = cv2.imread('move_button.png', cv2.IMREAD_UNCHANGED)
+    # _niddle_img = cv2.imread("last_page_alert.png", cv2.IMREAD_UNCHANGED)
+    # _button_img = cv2.imread("move_button.png", cv2.IMREAD_UNCHANGED)
     _niddle_img = cv2.imread(_root + "last_page_alert_rotate.png", cv2.IMREAD_UNCHANGED)
     _button_img = cv2.imread(_root + "move_button_rotate.png", cv2.IMREAD_UNCHANGED)
     _w = _niddle_img.shape[1]

@@ -37,6 +37,7 @@ class Interact:
 
     @classmethod
     def is_rotated_status(cls):
+        print("is_rotated_status")
         monitor = screeninfo.get_monitors()
         if monitor[0].height > monitor[0].width:
             return True
@@ -79,3 +80,7 @@ class Interact:
         # if _count == 4:
         #     click_listener.stop()
         #     print(_coordinate)
+
+    @classmethod
+    def get_screenshot(cls):
+        return pyautogui.screenshot()

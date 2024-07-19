@@ -12,13 +12,17 @@ class EbookCrawler:
     _name_list = []
     _current_name = ""
     _tele = None
+    _testing = None
 
     def __init__(self):
-        self._name_list = InfoWindow.loop()
+        self._name_list, self._testing = InfoWindow.loop()
 
         if self._name_list.__len__() == 0:
             print("No data entered!")
             exit(9)
+
+        if self._testing:
+            print("-------Testing mode-------")
 
         print(self._name_list)
         if self.check_dup_in_namelist(self._name_list):
@@ -54,27 +58,36 @@ class EbookCrawler:
 
     def start_capture(self, name, index):
         self._current_name = name
-        save_path = self.check_dup_in_path(name, True)
+        save_path = ""
+        if not self._testing:
+            save_path = self.check_dup_in_path(name, True)
         page = 1
         Interact.click_item(index)
-        time.sleep(7)
+        if not self._testing:
+            time.sleep(7)
+        else:
+            time.sleep(3)
 
         while True:
             screenshot = Interact.get_screenshot()
-            screenshot.save("{}/{}_{}.png".format(save_path, name, page))
+            if not self._testing:
+                screenshot.save("{}/{}_{}.png".format(save_path, name, page))
             Interact.move_to_next_page()
 
             if ImageAnalyzer.is_last_page(screenshot):
                 Interact.click_exit()
+                print("{} - Page: {}".format(name, page - 1))
                 self._tele.send_message(
-                    "{} - {}/{}".format(name, index, self._name_list.__len__())
+                    "({}/{}) - {} - p.{}".format(
+                        index, self._name_list.__len__(), name, page - 1
+                    )
                 )
                 time.sleep(5)
                 break
 
             if ImageAnalyzer.is_same_page_as_before(screenshot):
-                print("Stop Error: {}".format(name))
-                self._tele.send_error("Stop Error: {}".format(name))
+                print("Stop Error: {} - Page: {}".format(name, page))
+                self._tele.send_error("Stop Error: {} - Page: {}".format(name, page))
                 break
 
             time.sleep(0.6)
@@ -83,11 +96,14 @@ class EbookCrawler:
     def run(self):
         try:
             self._tele.send_message("start - " + self._name_list.__str__())
-            time.sleep(5)
+            if not self._testing:
+                time.sleep(5)
+            else:
+                time.sleep(2)
 
             for index, name in enumerate(self._name_list, start=1):
                 print("\n----", name)
-                # self.start_capture(name, index)
+                self.start_capture(name, index)
 
             self.clean_up()
 
