@@ -10,12 +10,16 @@ class EbookCrawler:
     _root_path = "~/Downloads/screenshots/"
     _check_name_dup = False
     _name_list = []
+    _is_pdf = []
     _current_name = ""
     _tele = None
     _testing = None
+    _time_per_page = 0.6
 
     def __init__(self):
-        self._name_list, self._testing = InfoWindow.loop()
+        self._name_list, self._testing, self._is_pdf, self._time_per_page = (
+            InfoWindow.loop()
+        )
 
         if self._name_list.__len__() == 0:
             print("No data entered!")
