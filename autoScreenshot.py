@@ -61,7 +61,7 @@ def act():
     temp_path = save_path.get() + file
     real_path = os.path.expanduser(temp_path)
     real_page = page + 1
-    if is_pdf.get() == 1:
+    if is_pdf.get() == 1
         real_page = page
 
     # crete directory
