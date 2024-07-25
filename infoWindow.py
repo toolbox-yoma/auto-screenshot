@@ -24,7 +24,10 @@ class InfoWindow:
     _third_is_pdf = tk.BooleanVar()
     _third_is_pdf.set(True)
 
-    _first_name = tk.Label(_user_info_frame, text="First Book", bg="black")
+    _first_name = tk.Label(
+        _user_info_frame,
+        text="First Book",
+    )
     _first_name.grid(row=1, column=0, padx=5, pady=5)
     _first_entry = tk.Entry(_user_info_frame)
     _first_entry.grid(row=1, column=1, padx=5, pady=5)
@@ -37,7 +40,7 @@ class InfoWindow:
     _first_radio_pdf.grid(row=1, column=2, padx=5, pady=5)
     _first_radio_epub.grid(row=1, column=3, padx=5, pady=5)
 
-    _second_label = tk.Label(_user_info_frame, text="Second", bg="black")
+    _second_label = tk.Label(_user_info_frame, text="Second")
     _second_label.grid(row=2, column=0, padx=5, pady=5)
     _second_entry = tk.Entry(_user_info_frame)
     _second_entry.grid(row=2, column=1, padx=5, pady=5)
@@ -50,7 +53,7 @@ class InfoWindow:
     _second_radio_pdf.grid(row=2, column=2, padx=5, pady=5)
     _second_radio_epub.grid(row=2, column=3, padx=5, pady=5)
 
-    _third_label = tk.Label(_user_info_frame, text="Third", bg="black")
+    _third_label = tk.Label(_user_info_frame, text="Third")
     _third_label.grid(row=3, column=0, padx=5, pady=5)
     _third_entry = tk.Entry(_user_info_frame)
     _third_entry.grid(row=3, column=1, padx=5, pady=5)
@@ -65,12 +68,12 @@ class InfoWindow:
 
     _is_testing = tk.BooleanVar()
     _test_button = tk.Checkbutton(
-        _user_setting_frame, text="Test", bg="black", variable=_is_testing
+        _user_setting_frame, text="Test", variable=_is_testing
     )
     _test_button.grid(row=1, column=0, padx=5, pady=5)
     _name_list = []
 
-    _time_label = tk.Label(_user_setting_frame, text="Time per page", bg="black")
+    _time_label = tk.Label(_user_setting_frame, text="Time per page")
     _time_label.grid(row=2, column=0, padx=5, pady=5)
     _time_value = tk.DoubleVar()
     _time_slider = tk.Scale(
