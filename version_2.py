@@ -28,13 +28,15 @@ class EbookCrawler:
         if self._testing:
             print("-------Testing mode-------")
 
+        self._name_list = [s for s in self._name_list if s]
         print(self._name_list)
         if self.check_dup_in_namelist(self._name_list):
             print("Duplicate names entered!")
             exit(9)
 
         for name in self._name_list:
-            self.check_dup_in_path(name)
+            if name:
+                self.check_dup_in_path(name)
 
         if self._check_name_dup:
             print("choose another name!")
@@ -58,7 +60,7 @@ class EbookCrawler:
 
     def clean_up(self):
         self._tele.send_message("all done - " + self._name_list.__str__())
-        Interact.rotate_screen()
+        # Interact.rotate_screen()
 
     def start_capture(self, name, index):
         self._current_name = name
@@ -94,7 +96,7 @@ class EbookCrawler:
                 self._tele.send_error("Stop Error: {} - Page: {}".format(name, page))
                 break
 
-            time.sleep(0.6)
+            time.sleep(self._time_per_page)
             page += 1
 
     def run(self):
@@ -106,6 +108,9 @@ class EbookCrawler:
                 time.sleep(2)
 
             for index, name in enumerate(self._name_list, start=1):
+                if not name:
+                    print("Empty name, skipping...")
+                    continue
                 print("\n----", name)
                 self.start_capture(name, index)
 
