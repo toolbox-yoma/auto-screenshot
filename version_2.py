@@ -83,11 +83,11 @@ class EbookCrawler:
             if ImageAnalyzer.is_last_page(screenshot):
                 Interact.click_exit()
                 print("{} - Page: {}".format(name, page - 1))
-                self._tele.send_message(
-                    "({}/{}) - {} - p.{}".format(
-                        index, self._name_list.__len__(), name, page - 1
-                    )
-                )
+                # self._tele.send_message(
+                #     "({}/{}) - {} - p.{}".format(
+                #         index, self._name_list.__len__(), name, page - 1
+                #     )
+                # )
                 time.sleep(5)
                 break
 
@@ -124,6 +124,7 @@ class EbookCrawler:
             exit(9)
 
         finally:
+            time.sleep(7)
             exit(0)
 
 

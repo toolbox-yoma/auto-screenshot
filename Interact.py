@@ -22,7 +22,8 @@ class Seq(Enum):
 
 class Interact:
     # home 16:9
-    _coordinate = [[680, 1010], [190, 460], [600, 500], [1000, 500]]
+    # _coordinate = [[680, 1010], [190, 460], [600, 500], [1000, 500]]
+    _coordinate = [[680, 1010], [100, 250], [300, 250], [500, 250]]
     # home 16:9 epub mode
     # _coordinate = [[], [], [], []]
     # work 16:10 normal
