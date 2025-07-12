@@ -23,13 +23,13 @@ class Seq(Enum):
 class Interact:
     # home 16:9
     # _coordinate = [[680, 1010], [190, 460], [600, 500], [1000, 500]]
-    _coordinate = [[680, 1010], [100, 250], [300, 250], [500, 250]]
+    # _coordinate = [[680, 1010], [100, 250], [300, 250], [500, 250]]
     # home 16:9 epub mode
     # _coordinate = [[], [], [], []]
     # work 16:10 normal
     # _coordinate = [[679, 1015], [154, 343], [460, 343], [752, 343]]
     # work 16:10 small
-    # _coordinate = [[673, 1009], [103, 241], [300, 241], [500, 241]]
+    _coordinate = [[673, 1009], [103, 241], [300, 241], [500, 241]]
 
     # click_listener = mouse.Listener(on_click=set_click_position)
     # click_listener.start()

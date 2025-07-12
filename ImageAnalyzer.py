@@ -4,15 +4,17 @@ from Interact import Interact
 
 
 class ImageAnalyzer:
-    _root = "./nidlde_images/"
+    _root = "./niddle_images/"
     # _niddle_img = cv2.imread("last_page_alert.png", cv2.IMREAD_UNCHANGED)
     # _button_img = cv2.imread("move_button.png", cv2.IMREAD_UNCHANGED)
-    _niddle_img = cv2.imread(_root + "last_page_alert_rotate.png", cv2.IMREAD_UNCHANGED)
-    _button_img = cv2.imread(_root + "move_button_rotate.png", cv2.IMREAD_UNCHANGED)
+    _niddle_img = cv2.imread(
+        _root + "last_page_alert.png", cv2.IMREAD_UNCHANGED)
+    _button_img = cv2.imread(
+        _root + "move_button.png", cv2.IMREAD_UNCHANGED)
     _w = _niddle_img.shape[1]
     _h = _niddle_img.shape[0]
-    _threshold = 0.90
-    _threshold_2 = 0.80
+    _threshold = 0.80
+    _threshold_2 = 0.85
     _pre_screenshot_list = ["", "", "", "", "", "", ""]
     _max_available_dup_item = 7
     _current_dup_count = 0
@@ -87,6 +89,7 @@ class ImageAnalyzer:
         result = cls.match_image(screenshot, cls._niddle_img)
         # return cls.check_threshold(result)
 
+        return cls.check_threshold(result)
         if cls.check_threshold(result):
             result_2 = cls.match_image(screenshot, cls._button_img)
             cls.show_threshold(result)
@@ -119,7 +122,8 @@ class ImageAnalyzer:
         result = cv2.matchTemplate(test, cls._niddle_img, cv2.TM_CCOEFF_NORMED)
 
         if cls.check_threshold(result):
-            temp = cv2.matchTemplate(test, cls._button_img, cv2.TM_CCOEFF_NORMED)
+            temp = cv2.matchTemplate(
+                test, cls._button_img, cv2.TM_CCOEFF_NORMED)
             cls.show_threshold(temp, cls._threshold_2)
             cls.showRect(temp)
 
@@ -135,7 +139,8 @@ class ImageAnalyzer:
         # show_threshold(result)
         # showRect(result)
 
-        result = cv2.matchTemplate(test_2, cls._niddle_img, cv2.TM_CCOEFF_NORMED)
+        result = cv2.matchTemplate(
+            test_2, cls._niddle_img, cv2.TM_CCOEFF_NORMED)
         cls.showImage(result)
         cls.show_threshold(result)
         cls.showRect(result)

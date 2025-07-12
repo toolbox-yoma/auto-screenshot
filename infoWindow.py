@@ -6,16 +6,11 @@ class InfoWindow:
     _root = tk.Tk()
     _root.title("Data Entry Form")
 
-    _user_info_frame = tk.LabelFrame(
-        _root,
-        text="Books Name",
-    )
-    _user_info_frame.grid(row=0, column=0, padx=20, pady=10)
-    _user_setting_frame = tk.LabelFrame(
-        _root,
-        text="Settings",
-    )
-    _user_setting_frame.grid(row=1, column=0, padx=20, pady=10)
+    _user_info_frame = tk.LabelFrame(_root, text="Books Name")
+    _user_info_frame.grid(row=0, column=0, padx=20, pady=20)
+
+    _user_setting_frame = tk.LabelFrame(_root, text="Settings")
+    _user_setting_frame.grid(row=1, column=0, padx=20, pady=20)
 
     _first_is_pdf = tk.BooleanVar()
     _first_is_pdf.set(True)
@@ -24,13 +19,20 @@ class InfoWindow:
     _third_is_pdf = tk.BooleanVar()
     _third_is_pdf.set(True)
 
-    _first_name = tk.Label(
-        _user_info_frame,
-        text="First Book",
-    )
+    _first_name = tk.Label(_user_info_frame, text="First Book")
     _first_name.grid(row=1, column=0, padx=5, pady=5)
-    _first_entry = tk.Entry(_user_info_frame)
+    _first_entry = tk.Entry(
+        _user_info_frame,
+        width=20,
+        bd=2,
+        relief="solid",
+        highlightthickness=1,
+        highlightcolor="black",
+        bg="white",
+        fg="black"
+    )
     _first_entry.grid(row=1, column=1, padx=5, pady=5)
+    _first_entry.focus()
     _first_radio_pdf = tk.Radiobutton(
         _user_info_frame, text="pdf", variable=_first_is_pdf, value=True
     )
@@ -47,10 +49,10 @@ class InfoWindow:
     _second_radio_pdf = tk.Radiobutton(
         _user_info_frame, text="pdf", variable=_second_is_pdf, value=True
     )
+    _second_radio_pdf.grid(row=2, column=2, padx=5, pady=5)
     _second_radio_epub = tk.Radiobutton(
         _user_info_frame, text="epub", variable=_second_is_pdf, value=False
     )
-    _second_radio_pdf.grid(row=2, column=2, padx=5, pady=5)
     _second_radio_epub.grid(row=2, column=3, padx=5, pady=5)
 
     _third_label = tk.Label(_user_info_frame, text="Third")
@@ -88,7 +90,7 @@ class InfoWindow:
         resolution=0.1,
     )
     _time_slider.grid(row=2, column=1, padx=5, pady=5)
-    _time_value.set(0.6)
+    _time_value.set(0.4)
 
     @classmethod
     def loop(cls):

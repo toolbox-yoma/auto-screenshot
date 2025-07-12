@@ -17,18 +17,18 @@ class EbookCrawler:
     _time_per_page = 0.6
 
     def __init__(self):
+        # win = InfoWindow()
         self._name_list, self._testing, self._is_pdf, self._time_per_page = (
             InfoWindow.loop()
         )
 
-        if self._name_list.__len__() == 0:
-            print("No data entered!")
-            exit(9)
-
         if self._testing:
             print("-------Testing mode-------")
 
-        self._name_list = [s for s in self._name_list if s]
+        self._name_list = [
+            s if s else time.strftime("%m%d_%H%M%S") + f"_{i}"
+            for i, s in enumerate(self._name_list)
+        ]
         print(self._name_list)
         if self.check_dup_in_namelist(self._name_list):
             print("Duplicate names entered!")
@@ -78,6 +78,7 @@ class EbookCrawler:
             screenshot = Interact.get_screenshot()
             if not self._testing:
                 screenshot.save("{}/{}_{}.png".format(save_path, name, page))
+                time.sleep(0.1)
             Interact.move_to_next_page()
 
             if ImageAnalyzer.is_last_page(screenshot):
@@ -93,7 +94,8 @@ class EbookCrawler:
 
             if ImageAnalyzer.is_same_page_as_before(screenshot):
                 print("Stop Error: {} - Page: {}".format(name, page))
-                self._tele.send_error("Stop Error: {} - Page: {}".format(name, page))
+                self._tele.send_error(
+                    "Stop Error: {} - Page: {}".format(name, page))
                 break
 
             time.sleep(self._time_per_page)
@@ -101,7 +103,10 @@ class EbookCrawler:
 
     def run(self):
         try:
-            self._tele.send_message("start - " + self._name_list.__str__())
+            if (self._name_list.__len__() == 0) or (self._name_list[0] == ""):
+                print("No data entered!")
+                exit(9)
+            # self._tele.send_message("start - " + self._name_list.__str__())
             if not self._testing:
                 time.sleep(5)
             else:
