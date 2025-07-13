@@ -46,6 +46,6 @@ def get_subfolder_names(parent_folder):
         images_to_pdf(subfolder_path, subfolder)
 
 
-root_path = "/Users/yoma/Downloads/screenshots"
-save_path = "/Users/yoma/Downloads/ebooks"
+root_path = "/Users/yoma/Downloads/ebooks_screenshots"
+save_path = "/Users/yoma/Downloads/ebooks_need_to_resolve"
 get_subfolder_names(root_path)

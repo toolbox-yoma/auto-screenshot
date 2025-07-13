@@ -5,8 +5,8 @@ import subprocess
 
 # target_path = "/Users/yoma/Library/Mobile Documents/com~apple~CloudDocs/Extended Mind/4. Akashic Records/Study/IT"
 
-target_path = "/Users/yoma/Downloads/resolved_ebooks"
-save_path = "/Users/yoma/Downloads/cover_ebooks"
+target_path = "/Users/yoma/Downloads/ebooks_resolved"
+save_path = "/Users/yoma/Downloads/ebooks_cover"
 done_file = os.path.join(save_path, "-done.txt")
 done_list = []
 dup_check_list = []
@@ -35,7 +35,7 @@ def list_all_files(path):
                 full_path = os.path.join(root, file)
                 if not check_file_exist(os.path.join(save_path, file[:-4] + ".png")):
                     generate_pdf_thumbnail(full_path, save_path)
-                    append_line_to_file(done_file, file[:-4])
+                    # append_line_to_file(done_file, file[:-4])
                 if file in dup_check_list:
                     print(f"dup - {file}")
 

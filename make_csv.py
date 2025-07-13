@@ -1,7 +1,7 @@
 import os
 import csv
 
-root_path = "/Users/yoma/Downloads/resolved_ebooks"
+root_path = "/Users/yoma/Downloads/ebooks_resolved"
 start_id = 1500
 
 

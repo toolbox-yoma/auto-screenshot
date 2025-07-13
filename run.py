@@ -7,7 +7,7 @@ from ImageAnalyzer import ImageAnalyzer
 
 
 class EbookCrawler:
-    _root_path = "~/Downloads/screenshots/"
+    _root_path = "~/Downloads/ebooks_screenshots/"
     _check_name_dup = False
     _name_list = []
     _is_pdf = []
