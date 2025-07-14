@@ -17,9 +17,11 @@ def export_filenames_to_csv(folder_path, output_csv_path):
         writer.writerow(['raw_name', 'is_done', 'is_korean', 'first_check'])
 
         for i, f in enumerate(files):
+            if not f.endswith('.pdf'):
+                continue
             name_without_ext = os.path.splitext(f)[0]
             # writer.writerow([start_id + i, name_without_ext])
-            writer.writerow([name_without_ext, False, False, False])
+            writer.writerow([name_without_ext, False, True, False])
 
     print(f"CSV 저장 완료: {output_csv_path}")
 

@@ -29,7 +29,8 @@ class Interact:
     # work 16:10 normal
     # _coordinate = [[679, 1015], [154, 343], [460, 343], [752, 343]]
     # work 16:10 small
-    _coordinate = [[673, 1009], [103, 241], [300, 241], [500, 241]]
+    _coordinate = [[673, 1009], [103, 241], [300, 241],
+                   [500, 241], [700, 241], [900, 241], [1100, 241]]
 
     # click_listener = mouse.Listener(on_click=set_click_position)
     # click_listener.start()

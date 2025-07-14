@@ -10,7 +10,7 @@ class EbookCrawler:
     _root_path = "~/Downloads/ebooks_screenshots/"
     _check_name_dup = False
     _name_list = []
-    _is_pdf = []
+    _book_count = 3
     _current_name = ""
     _tele = None
     _testing = None
@@ -18,7 +18,7 @@ class EbookCrawler:
 
     def __init__(self):
         # win = InfoWindow()
-        self._name_list, self._testing, self._is_pdf, self._time_per_page = (
+        self._book_count, self._testing, self._time_per_page = (
             InfoWindow.loop()
         )
 
@@ -26,8 +26,8 @@ class EbookCrawler:
             print("-------Testing mode-------")
 
         self._name_list = [
-            s if s else time.strftime("%m%d_%H%M%S") + f"_{i}"
-            for i, s in enumerate(self._name_list)
+            time.strftime("%m%d_%H%M%S") + f"_{i}"
+            for i in range(int(self._book_count))
         ]
         print(self._name_list)
         if self.check_dup_in_namelist(self._name_list):
