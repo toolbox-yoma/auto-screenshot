@@ -1,5 +1,5 @@
 import os
-from PIL import Image
+import img2pdf
 
 
 def extract_last_number(filename):
@@ -23,16 +23,20 @@ def images_to_pdf(folder_path, base_name):
         print(f"{base_name} : 해당 폴더에 이미지가 없습니다.")
         return
 
-    image_list = []
-    for filename in image_files:
-        path = os.path.join(folder_path, filename)
-        img = Image.open(path).convert('RGB')
-        image_list.append(img)
-
-    first_image = image_list.pop(0)
+    images = [os.path.join(folder_path, f) for f in image_files]
     output_path = os.path.join(save_path, base_name + ".pdf")
-    first_image.save(output_path, save_all=True, append_images=image_list)
-    print(f"{base_name}.pdf")
+
+    try:
+        with open(output_path, "wb") as f:
+            f.write(img2pdf.convert(images))
+        print(f"{base_name}.pdf 생성 완료")
+
+        # import shutil
+        # shutil.rmtree(folder_path)
+        # print(f"{folder_path} 폴더 삭제 완료")
+
+    except Exception as e:
+        print(f"PDF 생성 실패: {e}")
 
 
 def get_subfolder_names(parent_folder):
@@ -41,7 +45,7 @@ def get_subfolder_names(parent_folder):
         if os.path.isdir(os.path.join(parent_folder, name))
     ]
 
-    for i, subfolder in enumerate(subfolders):
+    for subfolder in subfolders:
         subfolder_path = os.path.join(parent_folder, subfolder)
         images_to_pdf(subfolder_path, subfolder)
 
